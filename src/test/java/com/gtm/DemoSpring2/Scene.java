@@ -14,6 +14,7 @@ public class Scene {
 		Performeur jeanMarc = (Performeur) appContext.getBean("Jean-Marc");
 		Performeur julien = (Performeur) appContext.getBean("Julien");
 		Performeur alain = (Performeur) appContext.getBean("Alain");
+		Performeur louis = (Performeur) appContext.getBean("Louis");
 		
 		// 3- Traitement
 		System.out.println("--------- OLIVIER -----------");
@@ -26,6 +27,8 @@ public class Scene {
 		julien.performe();
 		System.out.println("--------- ALAIN ----------");
 		alain.performe();
+		System.out.println("--------- LOUIS ----------");
+		louis.performe();
 		appContext.close();
 	}
 

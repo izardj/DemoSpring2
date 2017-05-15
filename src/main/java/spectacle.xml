@@ -8,14 +8,14 @@
 	<bean id="violon" class="com.gtm.DemoSpring2.Violon" />
 	<bean id="guitare" class="com.gtm.DemoSpring2.Guitare" />
 
-	<bean name="Olivier " class="com.gtm.DemoSpring2.Musicien">
+	<bean name="Olivier" class="com.gtm.DemoSpring2.Musicien">
 		<property name="instrument" ref="saxophone" />
 		<property name="morceau" value="Vive le vent..." />
 	</bean>
-	<bean name="Caroline " class="com.gtm.DemoSpring2.Musicien">
+	<bean name="Caroline" class="com.gtm.DemoSpring2.Musicien">
 		<property name="instrument" ref="violon" />
 	</bean>
-	<bean name="Jean-Marc " class="com.gtm.DemoSpring2.Musicien">
+	<bean name="Jean-Marc" class="com.gtm.DemoSpring2.Musicien">
 		<property name="instrument" ref="saxophone" />
 	</bean>
 	<!-- Julien joue de 2 saxophones avec <list> (accepte les doublons) -->
@@ -39,5 +39,10 @@
 				<ref bean="violon" />
 			</set>
 		</property>
+	</bean>
+	<!-- Louis joue le meme morceau qu'Olivier -->
+	<bean name="Louis" class="com.gtm.DemoSpring2.Musicien">
+		<property name="morceau" value="#{Olivier.morceau}" />
+		<property name="instrument" ref="guitare"/>
 	</bean>
 </beans>
