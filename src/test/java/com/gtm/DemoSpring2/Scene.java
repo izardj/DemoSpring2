@@ -11,12 +11,15 @@ public class Scene {
 		// 2- recuperation d'un bean
 		Musicien olivier = (Musicien) appContext.getBean("Olivier");
 		Musicien caroline = (Musicien) appContext.getBean("Caroline");
+		Musicien jeanMarc = (Musicien) appContext.getBean("Jean-Marc");
 		
 		// 3- Traitement
 		System.out.println("--------- OLIVIER -----------");
 		olivier.performe();
 		System.out.println("--------- CAROLINE ----------");
 		caroline.performe();
+		System.out.println("--------- JEAN-MARC ----------");
+		jeanMarc.performe();
 		appContext.close();
 	}
 

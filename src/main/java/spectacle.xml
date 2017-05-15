@@ -3,7 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="saxophone" class="com.gtm.DemoSpring2.Saxophone" />
+<!-- scope "prototype" dublique le bean à chaque injection  -->
+	<bean id="saxophone" class="com.gtm.DemoSpring2.Saxophone" scope="prototype"/>
 	<bean id="violon" class="com.gtm.DemoSpring2.Violon" />
 	<bean id="guitare " class="com.gtm.DemoSpring2.Guitare" />
 	
@@ -14,5 +15,7 @@
 	<bean name="Caroline " class="com.gtm.DemoSpring2.Musicien">
 		<property name="instrument" ref="violon" />
 	</bean>
-
+	<bean name="Jean-Marc " class="com.gtm.DemoSpring2.Musicien">
+		<property name="instrument" ref="saxophone" />
+	</bean>
 </beans>
