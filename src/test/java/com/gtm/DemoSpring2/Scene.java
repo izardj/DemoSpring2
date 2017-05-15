@@ -9,9 +9,11 @@ public class Scene {
 		ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext("spectacle.xml");
 		
 		// 2- recuperation d'un bean
-		Musicien olivier = (Musicien) appContext.getBean("Olivier");
-		Musicien caroline = (Musicien) appContext.getBean("Caroline");
-		Musicien jeanMarc = (Musicien) appContext.getBean("Jean-Marc");
+		Performeur olivier = (Performeur) appContext.getBean("Olivier");
+		Performeur caroline = (Performeur) appContext.getBean("Caroline");
+		Performeur jeanMarc = (Performeur) appContext.getBean("Jean-Marc");
+		Performeur julien = (Performeur) appContext.getBean("Julien");
+		Performeur alain = (Performeur) appContext.getBean("Alain");
 		
 		// 3- Traitement
 		System.out.println("--------- OLIVIER -----------");
@@ -20,6 +22,10 @@ public class Scene {
 		caroline.performe();
 		System.out.println("--------- JEAN-MARC ----------");
 		jeanMarc.performe();
+		System.out.println("--------- JULIEN ----------");
+		julien.performe();
+		System.out.println("--------- ALAIN ----------");
+		alain.performe();
 		appContext.close();
 	}
 

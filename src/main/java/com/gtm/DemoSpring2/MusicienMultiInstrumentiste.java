@@ -2,9 +2,9 @@ package com.gtm.DemoSpring2;
 
 import java.util.Collection;
 
-public class GroupeMusique implements Performeur {
+public class MusicienMultiInstrumentiste implements Performeur {
 
-	public GroupeMusique() {
+	public MusicienMultiInstrumentiste() {
 		super();
 	}
 	
