@@ -7,12 +7,14 @@
 
 	<!-- decouverte des annotations -->
 	<context:annotation-config />
-	<context:component-scan base-package="com.gtm.DemoSpring2"/>
+	<context:component-scan base-package="com.gtm.DemoSpring2" />
 
 	<!-- scope "prototype" dublique le bean à chaque injection -->
 	<bean id="saxophone" class="com.gtm.DemoSpring2.Saxophone" scope="prototype" />
 	<bean id="violon" class="com.gtm.DemoSpring2.Violon" primary="true"/>
 	<bean id="guitare" class="com.gtm.DemoSpring2.Guitare" />
+	<!-- test entre annotation et XML -->
+	<bean id="maGuitare" class="com.gtm.DemoSpring2.Piano" />
 
 	<bean name="Olivier" class="com.gtm.DemoSpring2.Musicien">
 		<property name="instrument" ref="saxophone" />
