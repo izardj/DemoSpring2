@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="saxophone" class="com.gtm.DemoSpring2.Saxophone" />
+	<bean id="violon" class="com.gtm.DemoSpring2.Violon" />
+	<bean id="guitare " class="com.gtm.DemoSpring2.Guitare" />
+	
+	<bean name="Olivier " class="com.gtm.DemoSpring2.Musicien">
+		<property name="instrument" ref="saxophone" />
+		<property name="morceau" value="Vive le vent..." />
+	</bean>
+	<bean name="Caroline " class="com.gtm.DemoSpring2.Musicien">
+		<property name="instrument" ref="violon" />
+	</bean>
+
+</beans>
