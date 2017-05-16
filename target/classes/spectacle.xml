@@ -16,18 +16,18 @@
 	<!-- test entre annotation et XML -->
 	<bean id="maGuitare" class="com.gtm.DemoSpring2.Piano" />
 
-	<bean name="Olivier" class="com.gtm.DemoSpring2.Musicien">
+	<bean id="Olivier" class="com.gtm.DemoSpring2.Musicien">
 		<property name="instrument" ref="saxophone" />
 		<property name="morceau" value="Vive le vent..." />
 	</bean>
-	<bean name="Caroline" class="com.gtm.DemoSpring2.Musicien">
+	<bean id="Caroline" class="com.gtm.DemoSpring2.Musicien">
 		<property name="instrument" ref="violon" />
 	</bean>
-	<bean name="Jean-Marc" class="com.gtm.DemoSpring2.Musicien">
+	<bean id="Jean-Marc" class="com.gtm.DemoSpring2.Musicien">
 		<property name="instrument" ref="saxophone" />
 	</bean>
 	<!-- Julien joue de 2 saxophones avec <list> (accepte les doublons) -->
-	<bean name="Julien" class="com.gtm.DemoSpring2.MusicienMultiInstrumentiste">
+	<bean id="Julien" class="com.gtm.DemoSpring2.MusicienMultiInstrumentiste">
 		<property name="instruments">
 			<list>
 				<ref bean="saxophone" />
@@ -38,7 +38,7 @@
 		</property>
 	</bean>
 	<!-- Alain joue de 2 saxophones avec <set> (pas de doublon) -->
-	<bean name="Alain" class="com.gtm.DemoSpring2.MusicienMultiInstrumentiste">
+	<bean id="Alain" class="com.gtm.DemoSpring2.MusicienMultiInstrumentiste">
 		<property name="instruments">
 			<set>
 				<ref bean="saxophone" />
@@ -49,26 +49,26 @@
 		</property>
 	</bean>
 	<!-- Louis joue le meme morceau qu'Olivier -->
-	<bean name="Louis" class="com.gtm.DemoSpring2.Musicien">
+	<bean id="Louis" class="com.gtm.DemoSpring2.Musicien">
 		<property name="morceau" value="#{Olivier.morceau}" />
 		<property name="instrument" ref="guitare"/>
 	</bean>
 	<!-- exemple d'auto-wiring by name -->
 	<bean id="instrument" class="com.gtm.DemoSpring2.Saxophone" />
 	
-	<bean name="Michel" class="com.gtm.DemoSpring2.Musicien" autowire="byName">
+	<bean id="Michel" class="com.gtm.DemoSpring2.Musicien" autowire="byName">
 		<property name="morceau" value="Petit ours brun"/>
 	</bean>
 	<!-- exemple d'auto-wiring par type -->
-	<bean name="Maurice" class="com.gtm.DemoSpring2.Musicien" autowire="byType">
+	<bean id="Maurice" class="com.gtm.DemoSpring2.Musicien" autowire="byType">
 		<property name="morceau" value="Petit ours brun"/>
 	</bean>
 	<!-- exemple d'utilisation de l'attribut parent -->
-	<bean name="parent" class="com.gtm.DemoSpring2.Musicien" abstract="true">
+	<bean id="parent" class="com.gtm.DemoSpring2.Musicien" abstract="true">
 		<property name="morceau" value="La Marseillaise"/>
 		<property name="instrument" ref="violon"/>
 	</bean>
-	<bean name="Martin" parent="parent">
+	<bean id="Martin" parent="parent">
 		<property name="instrument" ref="saxophone"/>
 	</bean>
 </beans>
