@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<!-- decouverte des annotations -->
 	<context:annotation-config />
@@ -11,7 +12,7 @@
 
 	<!-- scope "prototype" dublique le bean à chaque injection -->
 	<bean id="saxophone" class="com.gtm.DemoSpring2.Saxophone" scope="prototype" />
-	<bean id="violon" class="com.gtm.DemoSpring2.Violon" primary="true"/>
+	<bean id="violon" class="com.gtm.DemoSpring2.Violon" primary="true" />
 	<bean id="guitare" class="com.gtm.DemoSpring2.Guitare" />
 	<!-- test entre annotation et XML -->
 	<bean id="maGuitare" class="com.gtm.DemoSpring2.Piano" />
@@ -51,24 +52,40 @@
 	<!-- Louis joue le meme morceau qu'Olivier -->
 	<bean id="Louis" class="com.gtm.DemoSpring2.Musicien">
 		<property name="morceau" value="#{Olivier.morceau}" />
-		<property name="instrument" ref="guitare"/>
+		<property name="instrument" ref="guitare" />
 	</bean>
 	<!-- exemple d'auto-wiring by name -->
 	<bean id="instrument" class="com.gtm.DemoSpring2.Saxophone" />
-	
+
 	<bean id="Michel" class="com.gtm.DemoSpring2.Musicien" autowire="byName">
-		<property name="morceau" value="Petit ours brun"/>
+		<property name="morceau" value="Petit ours brun" />
 	</bean>
 	<!-- exemple d'auto-wiring par type -->
 	<bean id="Maurice" class="com.gtm.DemoSpring2.Musicien" autowire="byType">
-		<property name="morceau" value="Petit ours brun"/>
+		<property name="morceau" value="Petit ours brun" />
 	</bean>
 	<!-- exemple d'utilisation de l'attribut parent -->
 	<bean id="parent" class="com.gtm.DemoSpring2.Musicien" abstract="true">
-		<property name="morceau" value="La Marseillaise"/>
-		<property name="instrument" ref="violon"/>
+		<property name="morceau" value="La Marseillaise" />
+		<property name="instrument" ref="violon" />
 	</bean>
 	<bean id="Martin" parent="parent">
-		<property name="instrument" ref="saxophone"/>
+		<property name="instrument" ref="saxophone" />
 	</bean>
+
+	<!-- MISE EN OEUVRE AOP -->
+	<!-- declaration du bean intercepteur -->
+	<bean id="spectateurs" class="com.gtm.DemoSpring2.intercepteurs.Spectateurs" />
+	<!-- mise en oeuvre du tissage -->
+	<aop:config>
+	<!-- definition d'un lieu d'interception -->
+		<aop:pointcut expression="execution(* *.jouer(..))" id="servicePointcut" />
+		<!-- mise en oeuvre de l'aspect -->
+		<aop:aspect id="spectateursAspect" ref="spectateurs">
+		<!-- methode appelee avant -->
+			<aop:before method="prendPlace" pointcut-ref="servicePointcut" />
+			<!-- methode appelee apres succes -->
+			<aop:after-returning method="applaudit" pointcut-ref="servicePointcut"/>
+		</aop:aspect>
+	</aop:config>
 </beans>
