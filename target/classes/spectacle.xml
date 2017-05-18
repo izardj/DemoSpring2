@@ -98,4 +98,7 @@
 			<aop:around method="jeJoue" pointcut-ref="performePointcut" />
 		</aop:aspect>
 	</aop:config>
+	
+	<!-- AOP AVEC ANNOTATIONS -->
+	<aop:aspectj-autoproxy/>
 </beans>
