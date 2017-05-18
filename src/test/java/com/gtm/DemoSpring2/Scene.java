@@ -14,7 +14,7 @@ public class Scene {
 		Performeur jeanMarc = (Performeur) appContext.getBean("Jean-Marc");
 		Performeur julien = (Performeur) appContext.getBean("Julien");
 		Performeur alain = (Performeur) appContext.getBean("Alain");
-		Performeur louis = (Performeur) appContext.getBean("Louis");
+		//Performeur louis = (Performeur) appContext.getBean("Louis");
 		Performeur michel = (Performeur) appContext.getBean("Michel");
 		Performeur maurice = (Performeur) appContext.getBean("Maurice");
 		Performeur martin = (Performeur) appContext.getBean("Martin");
@@ -34,7 +34,7 @@ public class Scene {
 		System.out.println("--------- ALAIN ----------");
 		alain.performe();
 		System.out.println("--------- LOUIS ----------");
-		louis.performe();
+		//louis.performe();
 		System.out.println("--------- MICHEL ----------");
 		michel.performe();
 		System.out.println("--------- MAURICE ----------");

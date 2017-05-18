@@ -50,10 +50,10 @@
 		</property>
 	</bean>
 	<!-- Louis joue le meme morceau qu'Olivier -->
-	<bean id="Louis" class="com.gtm.DemoSpring2.Musicien">
-		<property name="morceau" value="#{Olivier.morceau}" />
-		<property name="instrument" ref="guitare" />
-	</bean>
+<!-- 	<bean id="Louis" class="com.gtm.DemoSpring2.Musicien"> -->
+<!-- 		<property name="morceau" value="#{Olivier.morceau}" /> -->
+<!-- 		<property name="instrument" ref="guitare" /> -->
+<!-- 	</bean> -->
 	<!-- exemple d'auto-wiring by name -->
 	<bean id="instrument" class="com.gtm.DemoSpring2.Saxophone" />
 
@@ -78,14 +78,24 @@
 	<bean id="spectateurs" class="com.gtm.DemoSpring2.intercepteurs.Spectateurs" />
 	<!-- mise en oeuvre du tissage -->
 	<aop:config>
-	<!-- definition d'un lieu d'interception -->
+		<!-- definition d'un lieu d'interception -->
 		<aop:pointcut expression="execution(* *.jouer(..))" id="servicePointcut" />
 		<!-- mise en oeuvre de l'aspect -->
 		<aop:aspect id="spectateursAspect" ref="spectateurs">
-		<!-- methode appelee avant -->
+			<!-- methode appelee avant -->
 			<aop:before method="prendPlace" pointcut-ref="servicePointcut" />
 			<!-- methode appelee apres succes -->
-			<aop:after-returning method="applaudit" pointcut-ref="servicePointcut"/>
+			<aop:after-returning method="applaudit"
+				pointcut-ref="servicePointcut" />
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- INTERCEPTEUR AUTOUR DE PERFORME -->
+	<bean id="musiciens" class="com.gtm.DemoSpring2.intercepteurs.Musiciens" />
+	<aop:config>
+		<aop:pointcut expression="execution(* *.performe(..))" id="performePointcut" />
+		<aop:aspect id="musisiensAspect" ref="musiciens">
+			<aop:around method="jeJoue" pointcut-ref="performePointcut" />
 		</aop:aspect>
 	</aop:config>
 </beans>
